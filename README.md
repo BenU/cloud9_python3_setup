@@ -11,6 +11,8 @@ $ bash cloud9_python3_setup.sh
 
 ## Next Steps
 1) Remove the script directory
+  
+     $ rm -rf ~/environment/cloud9_python3_setup 
 2) cd into new app directory
 3) setup the new python venv with:
 

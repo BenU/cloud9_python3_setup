@@ -163,9 +163,9 @@ set cursorline
 set wildmenu
 EOL
 
-# Create the repository directory and initialize Git
-mkdir "$repo_name"
-cd "$repo_name"
+# Create the repository directory within the Cloud9 environment directory and initialize Git
+mkdir ~/environment/"$repo_name"
+cd ~/environment/"$repo_name"
 git init
 
 echo "Setup complete! Your Cloud9 environment is ready for development."

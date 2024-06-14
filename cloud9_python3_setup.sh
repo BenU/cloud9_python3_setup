@@ -5,30 +5,12 @@ read -p "Enter your name: " name
 read -p "Enter your email: " email
 read -p "Enter the repository name: " repo_name
 
-# Update and install necessary packages
-sudo yum update -y
-sudo yum install -y python3 python3-pip vim git
+# Create the repository directory within the environment directory and initialize Git
+mkdir ~/environment/"$repo_name"
+cd ~/environment/"$repo_name"
+git init
 
-# Set up Python environment
-python3 -m venv myenv
-source myenv/bin/activate
-
-# Install essential Python packages
-pip install requests flask
-
-# Set up Git
-git config --global user.name "$name"
-git config --global user.email "$email"
-
-# Add useful Git aliases
-git config --global alias.st status
-git config --global alias.ci commit
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.last 'log -1 HEAD'
-git config --global alias.unstage 'reset HEAD --'
-
-# Create a .gitignore file
+# Create a .gitignore file in the repository directory
 cat <<EOL > .gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -148,6 +130,25 @@ dmypy.json
 .pyre/
 EOL
 
+# Set up Python environment
+python3 -m venv myenv
+source myenv/bin/activate
+
+# Install essential Python packages
+pip install requests flask
+
+# Set up Git
+git config --global user.name "$name"
+git config --global user.email "$email"
+
+# Add useful Git aliases
+git config --global alias.st status
+git config --global alias.ci commit
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.unstage 'reset HEAD --'
+
 # Configure Vim
 cat <<EOL > ~/.vimrc
 set number
@@ -163,10 +164,5 @@ set ruler
 set cursorline
 set wildmenu
 EOL
-
-# Create the repository directory within the Cloud9 environment directory and initialize Git
-mkdir ~/environment/"$repo_name"
-cd ~/environment/"$repo_name"
-git init
 
 echo "Setup complete! Your Cloud9 environment is ready for development."
